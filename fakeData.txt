@@ -1,0 +1,12 @@
+{
+    "name": "MacBook Pro 16",
+    "price": 2499,
+    "oldprice": 2699,
+    "image": "https://example.com/images/macbook.jpg",
+    "description": "High-performance laptop with M3 Max chip.",
+    "specification": "16-inch display, 64GB RAM, 4TB SSD.",
+    "buyturn": 2000,
+    "quantity": 15,
+    "brand_id": 1,
+    "category_id": 4
+}

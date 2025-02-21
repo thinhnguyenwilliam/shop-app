@@ -1,3 +1,19 @@
+import { Sequelize } from "sequelize"
+import db from "../models"
+
+export async function insertProduct(productData) {
+    try {
+        const newProduct = await db.Product.create(productData);
+        return { 
+            message: "Thêm mới sản phẩm thành công", 
+            data: newProduct 
+        };
+    } catch (error) {
+        throw new Error(`Lỗi khi thêm sản phẩm: ${error.message}`);
+    }
+}
+
+
 export async function getProducts() {
     return { message: "Lấy danh sách sản phẩm thành công" };
 }
@@ -6,9 +22,6 @@ export async function getProductById(id) {
     return { message: `Lấy thông tin sản phẩm có ID: ${id}` };
 }
 
-export async function insertProduct(productData) {
-    return { message: "Thêm mới sản phẩm thành công", data: productData };
-}
 
 export async function deleteProduct(id) {
     return { message: `Xoá sản phẩm có ID: ${id} thành công` };
