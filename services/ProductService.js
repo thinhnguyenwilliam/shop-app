@@ -2,15 +2,11 @@ import { Sequelize } from "sequelize"
 import db from "../models"
 
 export async function insertProduct(productData) {
-    try {
-        const newProduct = await db.Product.create(productData);
-        return { 
-            message: "Thêm mới sản phẩm thành công", 
-            data: newProduct 
-        };
-    } catch (error) {
-        throw new Error(`Lỗi khi thêm sản phẩm: ${error.message}`);
-    }
+    const newProduct = await db.Product.create(productData);
+    return {
+        message: "Thêm mới sản phẩm thành công",
+        data: newProduct
+    };
 }
 
 

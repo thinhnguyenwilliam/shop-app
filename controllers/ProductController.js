@@ -1,18 +1,29 @@
 import * as productService from '../services/ProductService';
-
+import InsertProductRequest from '../dtos/requests/insertProductRequest';
 
 export async function insertProduct(req, res) {
     try {
-        const productData = req.body;
-        const result = await productService.insertProduct(productData);
+        // Validate request data
+        const { error, value } = InsertProductRequest.validate(req.body);
+
+        if (error) {
+            return res.status(400).json({
+                message: "Validation failed",
+                errors: error
+            });
+        }
+
+        // Proceed with insertion if validation passes
+        const result = await productService.insertProduct(value);
         res.status(201).json(result);
     } catch (error) {
-        res.status(500).json({ 
-            message: "Lỗi khi thêm sản phẩm", 
-            error: error.message 
+        res.status(500).json({
+            message: "Lỗi khi thêm sản phẩm",
+            error
         });
     }
 }
+
 
 export async function getProducts(req, res) {
     const result = await productService.getProducts();
